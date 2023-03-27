@@ -1,0 +1,138 @@
+<script setup>
+import { ref } from 'vue';
+import trash from './icon/OcticonTrash16.vue'
+
+let price = ref('')
+let customer = ref('Guest')
+
+let addList = ref([])
+
+const addArray = (inputPrice) => {
+    if (inputPrice > 0 && inputPrice !== "" && inputPrice !== undefined && inputPrice !== null) {
+        addList.value.push(inputPrice)
+        console.log(addList.value)
+        price.value = ''
+
+        // console.log(subTotal())
+    } else {
+        console.log('blank')
+    }
+
+}
+
+const deleteAddList = (index) => {
+    addList.value.splice(index, 1)
+}
+
+
+const subTotal = () => {
+    let sTotal = addList.value.reduce(
+        (acc, curr) => acc + curr, 0
+    )
+    let cal = (Math.round(sTotal * 100) / 100).toFixed(2)
+    return cal
+}
+
+const criteriaDiscount = () => {
+    if (customer.value === 'Member') {
+        if (subTotal() >= 500 && subTotal() <= 999) {
+            return 0.05
+        } else if (subTotal() >= 1000 && subTotal() <= 1999) {
+            return 0.1
+        } else if (subTotal() >= 2000 && subTotal() <= 2999) {
+            return 0.2
+        } else if (subTotal() >= 3000) {
+            return 0.3
+        } else {
+            return 0
+        }
+    } else {
+        return 0
+    }
+}
+
+const discount = () => {
+    let cal = (Math.round((criteriaDiscount() * subTotal()) * 100) / 100).toFixed(2)
+    return cal
+}
+const total = () => {
+    let cal = (Math.round((subTotal() - discount()) * 100) / 100).toFixed(2)
+    return cal
+}
+
+const calPercent = (percent) => {
+    if (criteriaDiscount() === (percent / 100)) {
+        return 'bg-emerald-500 text-black'
+    } else {
+        return 'bg-zinc-300 text-zinc-500'
+    }
+}
+</script>
+ 
+<template>
+    <div>
+        <div class="mx-32 flex flex-col">
+            <div class="font-semibold text-2xl my-3" style="color: #304477;">Cashier</div>
+
+            <div class="bg-zinc-200 rounded-lg px-14 py-5 flex flex-col">
+
+                <!-- input -->
+                <div class="flex flex-row">
+                    <input type="number" class="w-full rounded-md px-8" placeholder="input price" v-model="price"
+                        @keyup.enter="addArray(price)">
+                    <button class="py-3 w-24 text-center ml-4 rounded-md text-white bg-blue-600"
+                        @click="addArray(price)">Add</button>
+
+                </div>
+
+                <!-- header add list -->
+                <div class="my-3 text-xl">Add List</div>
+
+                <!-- add list -->
+                <div class="flex flex-col bg-white rounded-md px-8 py-3 w-full h-52 overflow-auto ">
+                    <div v-for=" (list, index) in addList">
+                        <div class=" flex flex-row my-2">
+                            <span class="mr-3">{{ index + 1 }}.</span>
+                            <span>{{ list }} ฿</span>
+                            <trash class="ml-auto text-red-600" @click="deleteAddList(index)" />
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+
+                <!-- radio button -->
+                <div class="flex flex-row my-3">
+                    <div>Customer : </div>
+                    <input type="radio" name="customer" value="Guest" id="guest" v-model="customer"
+                        class="ml-4 accent-blue-600" checked><label for="guest">Guest</label>
+                    <input type="radio" name="customer" value="Member" id="member" v-model="customer"
+                        class="ml-4 accent-blue-600"><label for="member">Member</label>
+                </div>
+
+                <!-- discount -->
+                <div class="flex flex-col">
+                    <div>Discount ( {{ customer }} ) :</div>
+                    <div class="flex flex-row mt-3">
+                        <div class="px-10 py-4 mx-3 rounded-md font-semibol" :class="calPercent(5)">5%</div>
+                        <div class="px-10 py-4 mx-3 rounded-md font-semibol" :class="calPercent(10)">10%</div>
+                        <div class="px-10 py-4 mx-3 rounded-md font-semibol" :class="calPercent(20)">20%</div>
+                        <div class="px-10 py-4 mx-3 rounded-md font-semibol" :class="calPercent(30)">30%</div>
+                    </div>
+                </div>
+
+                <!-- summary price -->
+                <div class="flex flex-col">
+                    <div class="text-right">Sub Total : {{ subTotal() }} ฿</div>
+                    <div class="text-right text-red-500">Discount : {{ discount() }} ฿</div>
+                    <div class="text-right text-green-600 font-semibold text-2xl">Total : {{ total() }} ฿</div>
+                </div>
+
+                <div class="flex justify-end my-5">
+                    <button class="w-26 rounded-md p-3 text-white bg-blue-600">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+ 
+<style scoped></style>
