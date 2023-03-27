@@ -1,5 +1,5 @@
 <script setup>
-import trash from '../icon/OcticonTrash16.vue'
+import trash from '../components/icon/OcticonTrash16.vue'
 
 
 const emits = defineEmits(['deleteList'])
