@@ -1,17 +1,12 @@
 <script setup>
 import { ref } from 'vue';
-
 import HistoryManagement from './components/HistoryManagement.vue';
 import AddEditList from './components/AddEditList.vue'
-
-
 const currentComponant = ref('AddEditComp')
 const setCurrentComponant = (currentComp) => {
   currentComponant.value = currentComp
   console.log(currentComponant.value)
-
 }
-
 </script>
  
 <template>
