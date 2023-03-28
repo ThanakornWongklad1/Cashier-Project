@@ -12,6 +12,8 @@ const setCurrentComponant = (currentComp) => {
 
 }
 
+
+
 </script>
  
 <template>
