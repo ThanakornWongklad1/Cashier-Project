@@ -1,18 +1,41 @@
 <script setup>
-import { ref } from 'vue';
+import { ref,onMounted } from 'vue';
 import trash from './icon/OcticonTrash16.vue'
 
-let price = ref('')
-let customer = ref('Guest')
+const props = defineProps({
+    hisList: {
+        type: Object
+    }
+})
 
-let addList = ref([])
+let price = ref('')
+// let customer = ref('Guest')
+
+// let addList = ref([])
+
+const updateAddList = ref({})
+onMounted(() => {
+    // Add mode 
+    if (props.hisList === undefined) {
+        updateAddList.value = {
+            "date": "",
+            "customer": "Guest",
+            "discount": 0,
+            "total": 0,
+            "addList": []
+        }
+    }
+    // Edit mode
+    else {
+        updateAddList.value = props.hisList
+    }
+})
 
 const addArray = (inputPrice) => {
     if (inputPrice > 0 && inputPrice !== "" && inputPrice !== undefined && inputPrice !== null) {
-        addList.value.push(inputPrice)
-        console.log(addList.value)
+        updateAddList.value.addList.push(inputPrice)
+        console.log(updateAddList.value)
         price.value = ''
-
         // console.log(subTotal())
     } else {
         console.log('blank')
@@ -21,12 +44,11 @@ const addArray = (inputPrice) => {
 }
 
 const deleteAddList = (index) => {
-    addList.value.splice(index, 1)
+    updateAddList.value.addList?.splice(index, 1)
 }
 
-
 const subTotal = () => {
-    let sTotal = addList.value.reduce(
+    let sTotal = updateAddList.value.addList?.reduce(
         (acc, curr) => acc + curr, 0
     )
     let cal = (Math.round(sTotal * 100) / 100).toFixed(2)
@@ -34,7 +56,7 @@ const subTotal = () => {
 }
 
 const criteriaDiscount = () => {
-    if (customer.value === 'Member') {
+    if (updateAddList.value.customer === 'Member') {
         if (subTotal() >= 500 && subTotal() <= 999) {
             return 0.05
         } else if (subTotal() >= 1000 && subTotal() <= 1999) {
@@ -67,6 +89,9 @@ const calPercent = (percent) => {
         return 'bg-zinc-300 text-zinc-500'
     }
 }
+
+
+
 </script>
  
 <template>
@@ -90,7 +115,7 @@ const calPercent = (percent) => {
 
                 <!-- add list -->
                 <div class="flex flex-col bg-white rounded-md px-8 py-3 w-full h-52 overflow-auto ">
-                    <div v-for=" (list, index) in addList">
+                    <div v-for=" (list, index) in updateAddList.addList">
                         <div class=" flex flex-row my-2">
                             <span class="mr-3">{{ index + 1 }}.</span>
                             <span>{{ list }} ฿</span>
@@ -103,15 +128,15 @@ const calPercent = (percent) => {
                 <!-- radio button -->
                 <div class="flex flex-row my-3">
                     <div>Customer : </div>
-                    <input type="radio" name="customer" value="Guest" id="guest" v-model="customer"
+                    <input type="radio" name="customer" value="Guest" id="guest" v-model="updateAddList.customer"
                         class="ml-4 accent-blue-600" checked><label for="guest">Guest</label>
-                    <input type="radio" name="customer" value="Member" id="member" v-model="customer"
+                    <input type="radio" name="customer" value="Member" id="member" v-model="updateAddList.customer"
                         class="ml-4 accent-blue-600"><label for="member">Member</label>
                 </div>
 
                 <!-- discount -->
                 <div class="flex flex-col">
-                    <div>Discount ( {{ customer }} ) :</div>
+                    <div>Discount ( {{ updateAddList.customer }} ) :</div>
                     <div class="flex flex-row mt-3">
                         <div class="px-10 py-4 mx-3 rounded-md font-semibol" :class="calPercent(5)">5%</div>
                         <div class="px-10 py-4 mx-3 rounded-md font-semibol" :class="calPercent(10)">10%</div>
