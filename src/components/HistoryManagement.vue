@@ -4,9 +4,6 @@ import { getHistory } from '../composable/getHistory.js'
 import trash from './icon/OcticonTrash16.vue'
 import editIcon from './icon/MaterialSymbolsEditSquareOutlineRounded.vue'
 
-
-
-
 const historyList = ref([])
 onMounted(async () => {
     historyList.value = await getHistory()
