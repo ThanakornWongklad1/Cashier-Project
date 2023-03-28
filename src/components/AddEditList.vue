@@ -1,26 +1,65 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import trash from './icon/OcticonTrash16.vue'
+import HistoryManagement from './HistoryManagement.vue';
+
+const emits = defineEmits(['edit'])
+
+const props = defineProps({
+    hisList: {
+        type: Object
+    }
+})
 
 let price = ref('')
-let customer = ref('Guest')
 
-let addList = ref([])
+const updateAddList = ref({})
+
+const currentComponant = ref('AddEditComp')
+const setCurrentComponant = (currentComp) => {
+    currentComponant.value = currentComp
+    console.log(currentComponant.value)
+}
+
+onMounted(() => {
+    // Add mode 
+    if (props.hisList === undefined) {
+        updateAddList.value = {
+            date: "",
+            customer: "Guest",
+            discount: 0,
+            total: 0,
+            addList: []
+        }
+    }
+    // Edit mode
+    else {
+        updateAddList.value = props.hisList
+    }
+})
 
 const addArray = (inputPrice) => {
     if (inputPrice > 0 && inputPrice !== "" && inputPrice !== undefined && inputPrice !== null) {
-        updateAddList.value.addList.push(inputPrice)
-        console.log(updateAddList.value)
+        updateAddList.value.addList?.push(inputPrice)
+
+        // add discount to updatedList
+        updateAddList.value.discount = Number(discount())
+
+        // add total to updatedList
+        updateAddList.value.total = Number(total())
+
+        // clear input
         price.value = ''
-        // console.log(subTotal())
+
+        // console.log(updateAddList.value)
     } else {
         console.log('blank')
     }
 }
+
 const deleteAddList = (index) => {
     updateAddList.value.addList?.splice(index, 1)
 }
-
 
 const subTotal = () => {
     let sTotal = updateAddList.value.addList?.reduce(
@@ -29,6 +68,7 @@ const subTotal = () => {
     let cal = (Math.round(sTotal * 100) / 100).toFixed(2)
     return cal
 }
+
 const criteriaDiscount = () => {
     if (updateAddList.value.customer === 'Member') {
         if (subTotal() >= 500 && subTotal() <= 999) {
@@ -49,12 +89,16 @@ const criteriaDiscount = () => {
 
 const discount = () => {
     let cal = (Math.round((criteriaDiscount() * subTotal()) * 100) / 100).toFixed(2)
+    updateAddList.value.discount = Number(cal)
     return cal
 }
+
 const total = () => {
     let cal = (Math.round((subTotal() - discount()) * 100) / 100).toFixed(2)
+    updateAddList.value.total = Number(cal)
     return cal
 }
+
 const calPercent = (percent) => {
     if (criteriaDiscount() === (percent / 100)) {
         return 'bg-emerald-500 text-black'
@@ -63,12 +107,55 @@ const calPercent = (percent) => {
     }
 }
 
+const list = ref([])
 
+const addNewList = async (newList) => {
+    // console.log(newList)
+    //date time
+    updateAddList.value.date = new Date().toLocaleString()
+
+    // add discount to updatedList
+    updateAddList.value.discount = Number(discount())
+
+    // add total to updatedList
+    updateAddList.value.total = Number(total())
+
+
+    if (updateAddList.value.total !== 0) {
+        setCurrentComponant('histComp')
+
+        try {
+            const res = await fetch('http://localhost:5000/history', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    date: newList.date,
+                    customer: newList.customer,
+                    discount: newList.discount,
+                    total: newList.total,
+                    addList: newList.addList
+                })
+            })
+            if (res.status === 201) {
+                console.log('add successfully')
+                // const addedList = await res.json()
+                // list.value.push(addedList)
+                // console.log(list.value)
+            } else {
+                throw new Error('cannot add')
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+}
 
 </script>
- 
 <template>
-    <div>
+    <div v-if="currentComponant == 'AddEditComp'">
         <div class="mx-32 flex flex-col">
             <div class="font-semibold text-2xl my-3" style="color: #304477;">Cashier</div>
             <div class="bg-zinc-200 rounded-lg px-14 py-5 flex flex-col">
@@ -83,7 +170,7 @@ const calPercent = (percent) => {
                 <div class="my-3 text-xl">Add List</div>
                 <!-- add list -->
                 <div class="flex flex-col bg-white rounded-md px-8 py-3 w-full h-52 overflow-auto ">
-                    <div v-for=" (list, index) in updateAddList.addList">
+                    <div v-for=" (list, index) in updateAddList?.addList">
                         <div class=" flex flex-row my-2">
                             <span class="mr-3">{{ index + 1 }}.</span>
                             <span>{{ list }} ฿</span>
@@ -92,6 +179,7 @@ const calPercent = (percent) => {
                         <hr>
                     </div>
                 </div>
+
                 <!-- radio button -->
                 <div class="flex flex-row my-3">
                     <div>Customer : </div>
@@ -100,6 +188,7 @@ const calPercent = (percent) => {
                     <input type="radio" name="customer" value="Member" id="member" v-model="updateAddList.customer"
                         class="ml-4 accent-blue-600"><label for="member">Member</label>
                 </div>
+
                 <!-- discount -->
                 <div class="flex flex-col">
                     <div>Discount ( {{ updateAddList.customer }} ) :</div>
@@ -117,11 +206,15 @@ const calPercent = (percent) => {
                     <div class="text-right text-green-600 font-semibold text-2xl">Total : {{ total() }} ฿</div>
                 </div>
                 <div class="flex justify-end my-5">
-                    <button class="w-26 rounded-md p-3 text-white bg-blue-600">Confirm</button>
+                    <button class="w-26 rounded-md p-3 text-white bg-red-600" v-if="updateAddList.id"
+                        @click="$emit('edit', updateAddList)">Edit</button>
+                    <button class="w-26 rounded-md p-3 text-white bg-blue-600" @click="addNewList(updateAddList)"
+                        v-else>Confirm</button>
                 </div>
             </div>
         </div>
     </div>
+    <HistoryManagement v-if="currentComponant == 'histComp'" />
 </template>
  
 <style scoped></style>

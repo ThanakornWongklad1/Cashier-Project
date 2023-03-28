@@ -1,173 +1,53 @@
 {
-    "history": [
-        {
-            "id": 1,
-            "date": "13/03/23 08.00",
-            "customer": "Member",
-            "discount": 10,
-            "total": 1500,
-            "addList": [
-                500,
-                500,
-                500
-            ]
-        },
-        {
-            "id": 2,
-            "date": "13/03/23 08.00",
-            "customer": "Member",
-            "discount": 10,
-            "total": 1500,
-            "addList": [
-                500,
-                500,
-                500
-            ]
-        },
-        {
-            "id": 3,
-            "date": "13/03/23 08.00",
-            "customer": "Member",
-            "discount": 10,
-            "total": 1500,
-            "addList": [
-                500,
-                500,
-                500
-            ]
-        },
-        {
-            "id": 4,
-            "date": "13/03/23 08.00",
-            "customer": "Member",
-            "discount": 10,
-            "total": 1500,
-            "addList": [
-                500,
-                500,
-                500
-            ]
-        },
-        {
-            "id": 5,
-            "date": "13/03/23 08.00",
-            "customer": "Member",
-            "discount": 10,
-            "total": 1500,
-            "addList": [
-                500,
-                500,
-                500
-            ]
-        },
-        {
-            "id": 6,
-            "date": "13/03/23 08.00",
-            "customer": "Member",
-            "discount": 10,
-            "total": 1500,
-            "addList": [
-                500,
-                500,
-                500
-            ]
-        },
-        {
-            "id": 7,
-            "date": "13/03/23 08.00",
-            "customer": "Member",
-            "discount": 10,
-            "total": 1500,
-            "addList": [
-                500,
-                500,
-                500
-            ]
-        },
-        {
-            "id": 8,
-            "date": "13/03/23 08.00",
-            "customer": "Member",
-            "discount": 10,
-            "total": 1500,
-            "addList": [
-                500,
-                500,
-                500
-            ]
-        },
-        {
-            "id": 9,
-            "date": "13/03/23 08.00",
-            "customer": "Member",
-            "discount": 10,
-            "total": 1500,
-            "addList": [
-                500,
-                500,
-                500
-            ]
-        },
-        {
-            "id": 10,
-            "date": "13/03/23 08.00",
-            "customer": "Member",
-            "discount": 10,
-            "total": 1500,
-            "addList": [
-                500,
-                500,
-                500
-            ]
-        },
-        {
-            "id": 11,
-            "date": "13/03/23 08.00",
-            "customer": "Member",
-            "discount": 10,
-            "total": 1500,
-            "addList": [
-                500,
-                500,
-                500
-            ]
-        },
-        {
-            "id": 12,
-            "date": "13/03/23 08.00",
-            "customer": "Member",
-            "discount": 10,
-            "total": 1500,
-            "addList": [
-                500,
-                500,
-                500
-            ]
-        },
-        {
-            "id": 13,
-            "date": "13/03/23 08.00",
-            "customer": "Member",
-            "discount": 10,
-            "total": 1500,
-            "addList": [
-                500,
-                500,
-                500
-            ]
-        },
-        {
-            "id": 14,
-            "date": "13/03/23 08.00",
-            "customer": "Member",
-            "discount": 10,
-            "total": 1500,
-            "addList": [
-                500,
-                500,
-                500
-            ]
-        }
-        
-    ]
+  "history": [
+    {
+      "date": "3/29/2023, 3:43:03 AM",
+      "customer": "Member",
+      "discount": 900,
+      "total": 2100,
+      "addList": [
+        500,
+        500,
+        500,
+        1500
+      ],
+      "id": 1
+    },
+    {
+      "date": "3/29/2023, 3:43:15 AM",
+      "customer": "Guest",
+      "discount": 0,
+      "total": 2079,
+      "addList": [
+        500,
+        1500,
+        79
+      ],
+      "id": 2
+    },
+    {
+      "date": "3/29/2023, 3:54:06 AM",
+      "customer": "Member",
+      "discount": 450.8,
+      "total": 1803.2,
+      "addList": [
+        1234,
+        432,
+        123,
+        465
+      ],
+      "id": 3
+    },
+    {
+      "date": "3/29/2023, 4:02:03 AM",
+      "customer": "Member",
+      "discount": 102,
+      "total": 918,
+      "addList": [
+        465,
+        555
+      ],
+      "id": 4
+    }
+  ]
 }

@@ -7,7 +7,6 @@ const setCurrentComponant = (currentComp) => {
   currentComponant.value = currentComp
   console.log(currentComponant.value)
 }
-
 </script>
  
 <template>
@@ -22,14 +21,11 @@ const setCurrentComponant = (currentComp) => {
 
       </div>
 
-
       <!-- content -->
       <AddEditList v-if="currentComponant === 'AddEditComp'" />
 
       <!-- History -->
       <HistoryManagement v-if="currentComponant === 'histComp'" />
-
-
 
     </div>
   </div>
