@@ -4,9 +4,6 @@ import { getHistory } from '../composable/getHistory.js'
 import trash from './icon/OcticonTrash16.vue'
 import editIcon from './icon/MaterialSymbolsEditSquareOutlineRounded.vue'
 
-
-
-
 const historyList = ref([])
 
 onMounted(async () => {
@@ -29,6 +26,12 @@ const deleteQuestion = async (deleteId) => {
     }
 }
 
+const editHistory = ref(undefined)
+const setEditMode = (his) => {
+  // console.log(question)
+  editHistory.value = his
+  setCurrentComponant('AddEditComp')
+}
 
 </script>
  
