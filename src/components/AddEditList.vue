@@ -1,31 +1,12 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import trash from './icon/OcticonTrash16.vue'
-const props = defineProps({
-    hisList: {
-        type: Object
-    }
-})
+
 let price = ref('')
-// let customer = ref('Guest')
-// let addList = ref([])
-const updateAddList = ref({})
-onMounted(() => {
-    // Add mode 
-    if (props.hisList === undefined) {
-        updateAddList.value = {
-            "date": "",
-            "customer": "Guest",
-            "discount": 0,
-            "total": 0,
-            "addList": []
-        }
-    }
-    // Edit mode
-    else {
-        updateAddList.value = props.hisList
-    }
-})
+let customer = ref('Guest')
+
+let addList = ref([])
+
 const addArray = (inputPrice) => {
     if (inputPrice > 0 && inputPrice !== "" && inputPrice !== undefined && inputPrice !== null) {
         updateAddList.value.addList.push(inputPrice)
@@ -39,6 +20,8 @@ const addArray = (inputPrice) => {
 const deleteAddList = (index) => {
     updateAddList.value.addList?.splice(index, 1)
 }
+
+
 const subTotal = () => {
     let sTotal = updateAddList.value.addList?.reduce(
         (acc, curr) => acc + curr, 0
@@ -79,6 +62,9 @@ const calPercent = (percent) => {
         return 'bg-zinc-300 text-zinc-500'
     }
 }
+
+
+
 </script>
  
 <template>

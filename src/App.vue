@@ -7,6 +7,7 @@ const setCurrentComponant = (currentComp) => {
   currentComponant.value = currentComp
   console.log(currentComponant.value)
 }
+
 </script>
  
 <template>

@@ -3,6 +3,10 @@ import { ref, onMounted } from 'vue';
 import { getHistory } from '../composable/getHistory.js'
 import trash from './icon/OcticonTrash16.vue'
 import editIcon from './icon/MaterialSymbolsEditSquareOutlineRounded.vue'
+
+
+
+
 const historyList = ref([])
 onMounted(async () => {
     historyList.value = await getHistory()
@@ -22,12 +26,8 @@ const deleteQuestion = async (deleteId) => {
         console.log(error)
     }
 }
-const editHistory = ref(undefined)
-const setEditMode = (his) => {
-    // console.log(question)
-    editHistory.value = his
-    setCurrentComponant('AddEditComp')
-}
+
+
 </script>
  
 <template>
