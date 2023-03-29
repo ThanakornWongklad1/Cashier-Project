@@ -207,7 +207,8 @@ const addNewList = async (newList) => {
                 </div>
                 <div class="flex justify-end my-5">
                     <button class="w-26 rounded-md p-3 text-white bg-red-600" v-if="updateAddList.id"
-                        @click="$emit('edit', updateAddList)">Edit</button>
+                        @click="$emit('edit', updateAddList
+                        )">Edit</button>
                     <button class="w-26 rounded-md p-3 text-white bg-blue-600" @click="addNewList(updateAddList)"
                         v-else>Confirm</button>
                 </div>

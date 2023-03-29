@@ -38,8 +38,6 @@ const deleteQuestion = async (deleteId) => {
     }
 }
 
-
-
 const editHistory = async (updatedHistory) => {
     console.log(updatedHistory)
     try {
@@ -87,7 +85,7 @@ const editHistory = async (updatedHistory) => {
 </script>
 <template>
     <div class="w-full mt-10" v-if="currentComponant == 'histComp'">
-        <div class="bg-zinc-200 rounded-3xl w-9/12 mx-auto flex flex-col" style="height: 50rem;">
+        <div class="bg-zinc-200 rounded-3xl w-6/12 mx-auto flex flex-col" style="height: 50rem;">
             <div class="font-bold text-3xl my-auto text-center py-10" style="color: #304477;">
                 History
             </div>
@@ -100,9 +98,9 @@ const editHistory = async (updatedHistory) => {
                 </div>
                 <div class="grid grid-cols-6 text-center py-3 hover:bg-zinc-100 rounded-lg " v-for="history in historyList">
                     <editIcon class="ml-16" @click="setEditMode(history)" />
-                    <div class="text-xs pt-1">{{ history.date }}</div>
+                    <div class="mr-auto">{{ history.date }}</div>
                     <div class="">{{ history.customer }}</div>
-                    <div class="text-red-500">{{ history.discount }}</div>
+                    <div class="text-red-500">{{ history.discount !== 0 ? history.discount : '-' }}</div>
                     <div class="">{{ history.total }}</div>
                     <trash class="text-red-500 ml-10" @click="deleteQuestion(history.id)" />
                 </div>

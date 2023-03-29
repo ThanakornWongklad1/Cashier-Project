@@ -15,13 +15,14 @@
     },
     {
       "date": "3/29/2023, 3:43:15 AM",
-      "customer": "Guest",
-      "discount": 0,
-      "total": 2079,
+      "customer": "Member",
+      "discount": 519.8,
+      "total": 2079.2,
       "addList": [
         500,
         1500,
-        79
+        79,
+        520
       ],
       "id": 2
     },
@@ -39,15 +40,39 @@
       "id": 3
     },
     {
-      "date": "3/29/2023, 4:02:03 AM",
+      "date": "3/29/2023, 2:03:09 PM",
       "customer": "Member",
-      "discount": 102,
-      "total": 918,
+      "discount": 40.3,
+      "total": 765.7,
       "addList": [
-        465,
-        555
+        456,
+        100,
+        250
       ],
       "id": 4
+    },
+    {
+      "date": "3/29/2023, 2:03:38 PM",
+      "customer": "Member",
+      "discount": 43.45,
+      "total": 825.55,
+      "addList": [
+        423,
+        446
+      ],
+      "id": 5
+    },
+    {
+      "date": "3/29/2023, 2:37:36 PM",
+      "customer": "Member",
+      "discount": 133,
+      "total": 1197,
+      "addList": [
+        520,
+        130,
+        680
+      ],
+      "id": 6
     }
   ]
 }

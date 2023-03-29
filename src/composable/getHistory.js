@@ -10,5 +10,5 @@ const getHistory = async () => {
     } catch (err) {
         console.log(err)
     }
-}
+} 
 export {getHistory}
