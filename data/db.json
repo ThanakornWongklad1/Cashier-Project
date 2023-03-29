@@ -1,78 +1,15 @@
 {
   "history": [
     {
-      "date": "3/29/2023, 3:43:03 AM",
+      "date": "3/30/2023, 2:50:44 AM",
       "customer": "Member",
-      "discount": 900,
-      "total": 2100,
+      "discount": 37.5,
+      "total": 712.5,
       "addList": [
-        500,
-        500,
-        500,
-        1500
+        250,
+        500
       ],
       "id": 1
-    },
-    {
-      "date": "3/29/2023, 3:43:15 AM",
-      "customer": "Member",
-      "discount": 519.8,
-      "total": 2079.2,
-      "addList": [
-        500,
-        1500,
-        79,
-        520
-      ],
-      "id": 2
-    },
-    {
-      "date": "3/29/2023, 3:54:06 AM",
-      "customer": "Member",
-      "discount": 450.8,
-      "total": 1803.2,
-      "addList": [
-        1234,
-        432,
-        123,
-        465
-      ],
-      "id": 3
-    },
-    {
-      "date": "3/29/2023, 2:03:09 PM",
-      "customer": "Member",
-      "discount": 40.3,
-      "total": 765.7,
-      "addList": [
-        456,
-        100,
-        250
-      ],
-      "id": 4
-    },
-    {
-      "date": "3/29/2023, 2:03:38 PM",
-      "customer": "Member",
-      "discount": 43.45,
-      "total": 825.55,
-      "addList": [
-        423,
-        446
-      ],
-      "id": 5
-    },
-    {
-      "date": "3/29/2023, 2:37:36 PM",
-      "customer": "Member",
-      "discount": 133,
-      "total": 1197,
-      "addList": [
-        520,
-        130,
-        680
-      ],
-      "id": 6
     }
   ]
 }

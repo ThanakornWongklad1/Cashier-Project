@@ -15,12 +15,6 @@ let price = ref('')
 
 const updateAddList = ref({})
 
-const currentComponant = ref('AddEditComp')
-const setCurrentComponant = (currentComp) => {
-    currentComponant.value = currentComp
-    console.log(currentComponant.value)
-}
-
 onMounted(() => {
     // Add mode 
     if (props.hisList === undefined) {
@@ -122,8 +116,6 @@ const addNewList = async (newList) => {
 
 
     if (updateAddList.value.total !== 0) {
-        setCurrentComponant('histComp')
-
         try {
             const res = await fetch('http://localhost:5000/history', {
                 method: 'POST',
@@ -155,7 +147,7 @@ const addNewList = async (newList) => {
 
 </script>
 <template>
-    <div v-if="currentComponant == 'AddEditComp'">
+    <div>
         <div class="mx-32 flex flex-col">
             <div class="font-semibold text-2xl my-3" style="color: #304477;">Cashier</div>
             <div class="bg-zinc-200 rounded-lg px-14 py-5 flex flex-col">
@@ -206,16 +198,17 @@ const addNewList = async (newList) => {
                     <div class="text-right text-green-600 font-semibold text-2xl">Total : {{ total() }} ฿</div>
                 </div>
                 <div class="flex justify-end my-5">
-                    <button class="w-26 rounded-md p-3 text-white bg-red-600" v-if="updateAddList.id"
-                        @click="$emit('edit', updateAddList
-                        )">Edit</button>
-                    <button class="w-26 rounded-md p-3 text-white bg-blue-600" @click="addNewList(updateAddList)"
-                        v-else>Confirm</button>
+                    <button class="w-26 rounded-md p-3 text-white bg-red-600" v-if="updateAddList.id" @click="$emit('edit', updateAddList
+                    )">Edit</button>
+
+                    <RouterLink :to="total()!=0?{ name: 'HistoryManagementView' } : ''" active-class="active"
+                        class="w-26 rounded-md p-3 text-white bg-blue-600" @click="addNewList(updateAddList)" v-else>
+                        Confirm
+                    </RouterLink>
                 </div>
             </div>
         </div>
     </div>
-    <HistoryManagement v-if="currentComponant == 'histComp'" />
 </template>
  
 <style scoped></style>

@@ -105,8 +105,12 @@ const editHistory = async (updatedHistory) => {
                     <trash class="text-red-500 ml-10" @click="deleteQuestion(history.id)" />
                 </div>
             </div>
-            <button class="bg-white py-3 px-14 rounded-xl my-10 mx-auto font-semibold"
-                @click="setCurrentComponant('AddEditComp')">Back</button>
+
+            <RouterLink :to="{ name: 'AddEditListView' }" active-class="active"
+                class="bg-white py-3 px-14 rounded-xl my-10 mx-auto font-semibold"
+                @click="setCurrentComponant('AddEditComp')">
+                Go Back
+            </RouterLink>
         </div>
     </div>
     <AddEditList v-if="currentComponant === 'AddEditComp'" :hisList="editHis" @edit="editHistory" />
