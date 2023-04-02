@@ -65,13 +65,13 @@ const subTotal = () => {
 
 const criteriaDiscount = () => {
     if (updateAddList.value.customer === 'Member') {
-        if (subTotal() >= 500 && subTotal() <= 999) {
+        if (subTotal() >= 5000 && subTotal() <= 7999) {
             return 0.05
-        } else if (subTotal() >= 1000 && subTotal() <= 1999) {
+        } else if (subTotal() >= 8000 && subTotal() <= 14999) {
             return 0.1
-        } else if (subTotal() >= 2000 && subTotal() <= 2999) {
+        } else if (subTotal() >= 15000 && subTotal() <= 29999) {
             return 0.2
-        } else if (subTotal() >= 3000) {
+        } else if (subTotal() >= 30000) {
             return 0.3
         } else {
             return 0
@@ -101,7 +101,6 @@ const calPercent = (percent) => {
     }
 }
 
-const list = ref([])
 
 const addNewList = async (newList) => {
     // console.log(newList)
@@ -211,4 +210,6 @@ const addNewList = async (newList) => {
     </div>
 </template>
  
-<style scoped></style>
+<style scoped>
+
+</style>

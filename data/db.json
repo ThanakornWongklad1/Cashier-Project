@@ -1,15 +1,78 @@
 {
   "history": [
     {
-      "date": "3/30/2023, 2:50:44 AM",
+      "date": "3/2/2023, 10:45:30 PM",
       "customer": "Member",
-      "discount": 37.5,
-      "total": 712.5,
+      "discount": 1072.35,
+      "total": 9651.15,
       "addList": [
-        250,
-        500
+        203,
+        170,
+        850.5,
+        4500,
+        5000
       ],
-      "id": 1
+      "id": 2
+    },
+    {
+      "date": "3/2/2023, 10:45:43 PM",
+      "customer": "Guest",
+      "discount": 0,
+      "total": 24000,
+      "addList": [
+        8500,
+        1500,
+        9000,
+        5000
+      ],
+      "id": 3
+    },
+    {
+      "date": "4/2/2023, 10:45:43 PM",
+      "customer": "Member",
+      "discount": 5300,
+      "total": 21200,
+      "addList": [
+        8500,
+        1500,
+        9000,
+        7500
+      ],
+      "id": 4
+    },
+    {
+      "date": "4/2/2023, 10:45:43 PM",
+      "customer": "Member",
+      "discount": 3800,
+      "total": 15200,
+      "addList": [
+        8500,
+        1500,
+        9000
+      ],
+      "id": 5
+    },
+    {
+      "date": "4/2/2023, 10:54:49 PM",
+      "customer": "Member",
+      "discount": 0,
+      "total": 4500,
+      "addList": [
+        1500,
+        3000
+      ],
+      "id": 6
+    },
+    {
+      "date": "4/3/2023, 12:09:20 AM",
+      "customer": "Member",
+      "discount": 257.5,
+      "total": 4892.5,
+      "addList": [
+        5000,
+        150
+      ],
+      "id": 7
     }
   ]
 }
