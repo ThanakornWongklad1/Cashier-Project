@@ -1,29 +1,8 @@
-# project2
-
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+### รายการฟีเจอร์
 ```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
+1. สามารถแสดงเวลาขณะที่บันทึกรายการสำเร็จ
+2. สามารถเก็บ ดู แก้ไขและลบประวัติ
+3. สามารถคำนวนส่วนลดของผู้ใช้ที่เป็นสมาชิก (member)
+4. เพิ่มยอดราคาสินค้าทั้งหมดและคิดผลรวมรายการสินค้าทั้งหมดได้
+5. สามารถลบรายการสินค้าที่เพิ่มเข้ามา
 ```
